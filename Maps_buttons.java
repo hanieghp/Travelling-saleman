@@ -1,6 +1,7 @@
 package TSM;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -26,7 +27,7 @@ public class Maps_buttons extends JFrame implements ActionListener {
                 JFrame nowb = (JFrame)
                         SwingUtilities.getWindowAncestor(backA);
                 nowb.dispose();
-                Sound.stop();
+                TSM.Sound.stop();
                 new Menu();
             }
             if (ans1 == 1) {
@@ -52,3 +53,4 @@ public class Maps_buttons extends JFrame implements ActionListener {
         }
     }
 }
+

@@ -37,5 +37,11 @@ public class About extends JFrame {
         this.setSize(600, 600);
         ImageIcon img1=new ImageIcon("F:\\my photoshops\\EZMW0610.JPEG");
         this.setIconImage(img1.getImage());
+        this.setIconImage(img1.getImage());
+        this.setBounds(0, 0, 3234, 2434);
+        this.setLocationRelativeTo(null);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+//        this.setSize(3234, 2434);
+//        this.setResizable(false);
     }
 }

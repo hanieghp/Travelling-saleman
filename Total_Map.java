@@ -6,11 +6,10 @@ import java.awt.*;
 
 import java.util.Random;
 
-public  class Total_Map extends JPanel {
+public  class Total_Map extends JFrame {
     Random rand = new Random();
     int x;
     int y;
-
     public static double[][] map = {
             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
             {0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
@@ -22,10 +21,33 @@ public  class Total_Map extends JPanel {
             {0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
             {0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
             {0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
-            {0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
+            {11, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
     };
+    Image market = Toolkit.getDefaultToolkit().getImage("F:\\my photoshops\\earqe870i1cz14.jpg");
+    Image zamin = Toolkit.getDefaultToolkit().getImage("F:\\my photoshops\\earqe870i1cz14.jpg");
+    Image ghale = Toolkit.getDefaultToolkit().getImage("F:\\my photoshops\\ba4cf8fadc36757ac213b3b5803164551.png");
+    Image start = Toolkit.getDefaultToolkit().getImage("F:\\my photoshops\\ba4cf8fadc36757ac213b3b58031645513.png");
+    Image wall = Toolkit.getDefaultToolkit().getImage("F:\\my photoshops\\earqe870i1cz12.jpg");
     Total_Map() {
+        this.setContentPane(new JPanel(){
+            @Override
+            public void paintComponent(Graphics g) {
+                for(int i=0 ; i<12 ; i++){
+                    for(int j=0 ; j<12 ; j++){
+                        if (map[i][j]==1){
+                            g.drawImage(zamin,i*75+250, j*75+150,null);
+                        }
+                        if (map[i][j]==6) {
+                            g.drawImage(ghale, i * 75 + 250, j * 75 + 150, null);
+                        }
+                        if (map[i][j]==11) {
+                            g.drawImage(start, i * 75 + 250, j * 75 + 150, null);
+                        }
+                    }
+                }
+            }
+        });
         this.setPreferredSize(new Dimension(500,500));
         for (int i = 0; i < 1; i++) {
             x = Math.abs((rand.nextInt() % 5)) + 1;
@@ -113,12 +135,21 @@ public  class Total_Map extends JPanel {
                 map[x][y] = 5; //trap
             } else i--;
         }
-        String money1= String.valueOf(Scores.money1);
-        String money2= String.valueOf(Scores.money2);
-        String score1= String.valueOf(Scores.score1);
-        String score2= String.valueOf(Scores.score2);
-        String weapon1=String.valueOf(Scores.weapon1);
-        String weapon2=String.valueOf(Scores.weapon2);
+
+        this.setContentPane(new JPanel(){
+            @Override
+            public void paintComponent(Graphics g) {
+                for(int i=0 ; i<12 ; i++){
+                    for(int j=0 ; j<12 ; j++){
+                        if(map[i][j]==4){
+                            g.drawImage(market,i*75+250, j*75+150,null);
+                        }
+                        if (map[i][j]==7)
+                            g.drawImage(wall, i*75+250, j*75+150, null);
+                    }
+                }
+            }
+        });
 
 
 //        ImageIcon img1 = new ImageIcon("F:\\my photoshops\\EZMW0610.JPEG");
@@ -129,5 +160,8 @@ public  class Total_Map extends JPanel {
 //        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 //        this.setSize(1920, 1080);
 //        this.setResizable(false);
+
+
     }
+
 }

@@ -1,24 +1,28 @@
 package TSM;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Random;
 
 public class MyFrame extends JFrame implements ActionListener {
+
+    static JTextField x1;
+
+    static JTextField  x2;
     JButton backA;
     JButton exitA;
-    Random rand = new Random();
+    static Random rand = new Random();
+
+    static int res = Math.abs(rand.nextInt() % 8)+1;
+
     int x;
     int y;
+
     public static int[][] map = {
             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
+            {0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 11, 0},
             {0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
             {0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
             {0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
@@ -30,43 +34,52 @@ public class MyFrame extends JFrame implements ActionListener {
             {0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
     };
-    Image castle = Toolkit.getDefaultToolkit().getImage("C:\\Users\\User\\Desktop\\test java\\library\\TMS\\ba4cf8fadc36757ac213b3b5803164551.png");
-    Image back = Toolkit.getDefaultToolkit().getImage("back.jpeg");
+    Image castle = Toolkit.getDefaultToolkit().getImage("F:\\my photoshops\\ba4cf8fadc36757ac213b3b5803164551.png");
+    Image back = Toolkit.getDefaultToolkit().getImage("F:\\my photoshops\\BGGW7462.JPEG");
 
-    Image market = Toolkit.getDefaultToolkit().getImage("C:\\Users\\User\\Desktop\\test java\\library\\TMS\\earqe870i1cz14.jpg");
-    Image zamin = Toolkit.getDefaultToolkit().getImage("C:\\Users\\User\\Desktop\\test java\\library\\TMS\\earqe870i1cz13.jpg");
-    Image wall = Toolkit.getDefaultToolkit().getImage("C:\\Users\\User\\Desktop\\test java\\library\\TMS\\earqe870i1cz12.jpg");
-    Image left = Toolkit.getDefaultToolkit().getImage("C:\\Users\\User\\OneDrive\\Pictures\\Screenshots\\left.jpg");
-    Image right = Toolkit.getDefaultToolkit().getImage("C:\\Users\\User\\OneDrive\\Pictures\\Screenshots\\right.jpg");
-    Image up = Toolkit.getDefaultToolkit().getImage("C:\\Users\\User\\OneDrive\\Pictures\\Screenshots\\up.jpg");
-    Image down = Toolkit.getDefaultToolkit().getImage("C:\\Users\\User\\OneDrive\\Pictures\\Screenshots\\down.jpg");
+    Image market = Toolkit.getDefaultToolkit().getImage("F:\\my photoshops\\earqe870i1cz14.jpg");
+    Image zamin = Toolkit.getDefaultToolkit().getImage("F:\\my photoshops\\earqe870i1cz13.jpg");
+    Image wall = Toolkit.getDefaultToolkit().getImage("F:\\my photoshops\\earqe870i1cz12.jpg");
+    Image left = Toolkit.getDefaultToolkit().getImage("F:\\my photoshops\\button\\left.PNG");
+    Image right = Toolkit.getDefaultToolkit().getImage("F:\\my photoshops\\button\\right.PNG");
+    Image up = Toolkit.getDefaultToolkit().getImage("F:\\my photoshops\\button\\up.PNG");
+    Image down = Toolkit.getDefaultToolkit().getImage("F:\\my photoshops\\button\\down.PNG");
+    Image round = Toolkit.getDefaultToolkit().getImage("F:\\my photoshops\\IMG_2922.GIF");
+    Image chakme = Toolkit.getDefaultToolkit().getImage("F:\\my photoshops\\IMG16.PNG");
+    Image cheraq = Toolkit.getDefaultToolkit().getImage("F:\\my photoshops\\IMG15.PNG");
+    Image halghe = Toolkit.getDefaultToolkit().getImage("F:\\my photoshops\\IMG11.PNG");
+    Image taj = Toolkit.getDefaultToolkit().getImage("F:\\my photoshops\\IMG17.PNG");
+    Image trap = Toolkit.getDefaultToolkit().getImage("F:\\my photoshops\\BMXL64252.jpg");
+    Image ayne = Toolkit.getDefaultToolkit().getImage("F:\\my photoshops\\IMG13.PNG");
+    Image sib = Toolkit.getDefaultToolkit().getImage("F:\\my photoshops\\IMG14.PNG");
+    Image javaherat = Toolkit.getDefaultToolkit().getImage("F:\\my photoshops\\IMG12.PNG");
+    Image kafsh = Toolkit.getDefaultToolkit().getImage("F:\\my photoshops\\IMG10.PNG");
+    Image diamond = Toolkit.getDefaultToolkit().getImage("F:\\my photoshops\\UNIY1187.JPEG");
 
-    // private Total_Map total_map ;
-    JFrame frame;
-//    private BufferedImage img;
-//    private BufferedImage[] idlani;
-//    private int anitick, aniindex, anispeed = 20, anired;
+    static String power1;
+    static String money1;
+    static String treasure1;
+    static String power2;
+    static String money2;
+    static String treasure2;
 
-    int player1locX = 460;
+    static int player1locX = 460;
 
-    int player1locY = 930;
-    int player2locX = 420;
+    static int player1locY = 900;
+    static int player2locX = 420;
 
-    int player2locY = 930;
-    ImageIcon icon;
-    JLabel label;
+    static int player2locY = 900;
 
-    Image background;
     Image playerimg1;
     Image playerimg2;
 
-    private TimerJpanel timerPanel = new TimerJpanel();
-    private Dice dice = new Dice();
+    private final TimerJpanel timerPanel = new TimerJpanel();
+    private final Dice dice = new Dice();
 
     MyFrame() {
-
-//        importimage();
-//        loadanimation();
+        x1= new JTextField("player1");
+        x2=new JTextField("player2");
+        SoundButton sound = new SoundButton("C:\\Users\\Asus\\Downloads\\Jungle (2).wav","F:\\my photoshops\\mute.jpg","F:\\my photoshops\\unmute.jpg");
         Icon backIcon1 = new ImageIcon("F:\\my photoshops\\KZAS6623.jpg");
         Icon exitIcon1 = new ImageIcon("F:\\my photoshops\\KZAS66222.jpg");
         backA = new JButton(backIcon1);
@@ -162,115 +175,222 @@ public class MyFrame extends JFrame implements ActionListener {
         this.setContentPane(new JPanel() {
             @Override
             public void paintComponent(Graphics g) {
-                g.drawImage(back, 0, 0, 1920, 1080, null);
-                g.drawImage(left, 100, 300, 50, 50, null);
-                g.drawImage(right, 170, 400, 50, 50, null);
-                g.drawImage(up, 135, 550, 50, 50, null);
-                g.drawImage(down, 135, 750, 50, 50, null);
-                    for (int i = 0; i < 12; i++) {
-                        for (int j = 0; j < 12; j++) {
-                            if (map[i][j] == 4) {
-                                g.drawImage(market, i * 75 + 350, j * 75 + 200, null);
-                            }
-                            if (map[i][j] != 7 && map[i][j] != 6 && map[i][j] != 4 && map[i][j] != 0) {
-                                g.drawImage(zamin, i * 75 + 350, j * 75 + 200, null);
-                            }
-                            if (map[i][j] == 7)
-                                g.drawImage(wall, i * 75 + 350, j * 75 + 200, null);
-                            if (map[i][j] == 6)
-                                g.drawImage(castle, i * 75 + 350, j * 75 + 200, null);
+                g.drawImage(back, 0, -50, 1920, 1080, null);
+                g.drawImage(left, 20, 520, 100, 100, null);
+                g.drawImage(right, 180, 520, 100, 100, null);
+                g.drawImage(up, 100, 400, 100, 100, null);
+                g.drawImage(down, 100, 640, 100, 100, null);
+                g.drawImage(round,1500,100,75,75,null);
+                repaint();
+                for (int i = 0; i < 12; i++) {
+                    for (int j = 0; j < 12; j++) {
+                        if (map[i][j] == 4) {
+                            g.drawImage(market, i * 75 + 350, j * 75 + 150, null);
                         }
+                        if (map[i][j] != 7 && map[i][j] != 6 && map[i][j] != 4 && map[i][j] != 0)
+                            g.drawImage(zamin, i * 75 + 350, j * 75 + 150, null);
+                        if (map[i][j]==11)
+                            g.drawImage(zamin, i * 75 + 350, j * 75 + 150, null);
+                        if (map[i][j] == 7)
+                            g.drawImage(wall, i * 75 + 350, j * 75 + 150, null);
+                        if (map[i][j] == 6)
+                            g.drawImage(castle, i * 75 + 350, j * 75 + 150, null);
+                        if (map[i][j] == -3)
+                            g.drawImage(diamond, i * 75 + 350, j * 75 + 150, null);
+                        if (map[i][j] == -800)
+                            g.drawImage(cheraq, i * 75 + 350, j * 75 + 150, 75, 75, null);
+                        if (map[i][j] == -700)
+                            g.drawImage(taj, i * 75 + 350, j * 75 + 150, 75, 75, null);
+                        if (map[i][j] == -600)
+                            g.drawImage(javaherat, i * 75 + 350, j * 75 + 150, 75, 75, null);
+                        if (map[i][j] == -500)
+                            g.drawImage(halghe, i * 75 + 350, j * 75 + 150, 75, 75, null);
+                        if (map[i][j] == -400)
+                            g.drawImage(kafsh, i * 75 + 350, j * 75 + 150, 75, 75, null);
+                        if (map[i][j] == -300)
+                            g.drawImage(ayne, i * 75 + 350, j * 75 + 150, 75, 75, null);
+                        if (map[i][j] == -200)
+                            g.drawImage(sib, i * 75 + 350, j * 75 + 150, 75, 75, null);
+                        if (map[i][j] == -100)
+                            g.drawImage(chakme, i * 75 + 350, j * 75 + 150, 75, 75, null);
+                        if (map[i][j] == -5)
+                            g.drawImage(trap, i * 75 + 350, j * 75 + 150, null);
+                    }
+                    if(Scores.gameTurn == 1){
                         g.drawImage(playerimg1, player1locX, player1locY, 30, 80, null);
+                        repaint();
+                    }
+                    else if(Scores.gameTurn == 2){
                         g.drawImage(playerimg2, player2locX, player2locY, 30, 80, null);
                         repaint();
-                        //this.add(dice);
                     }
-
+                    repaint();
                 }
-            });
+                if (res == 1) {
+                    Image img2 = Toolkit.getDefaultToolkit().getImage("F:\\my photoshops\\IMG2.jpg");
+                    g.drawImage(img2, 50, 50, 180, 270, null);
+                }
+                if (res == 2) {
+                    Image img2 = Toolkit.getDefaultToolkit().getImage("F:\\my photoshops\\IMG8.jpg");
+                    g.drawImage(img2, 50, 50, 180, 270, null);
+                }
+                if (res == 3) {
+                    Image img2 = Toolkit.getDefaultToolkit().getImage("F:\\my photoshops\\IMG7.jpg");
+                    g.drawImage(img2, 50, 50, 180, 270, null);
+                }
+                if (res == 4) {
+                    Image img2 = Toolkit.getDefaultToolkit().getImage("F:\\my photoshops\\IMG4.jpg");
+                    g.drawImage(img2, 50, 50, 180, 270, null);
+                }
+                if (res == 5) {
+                    Image img2 = Toolkit.getDefaultToolkit().getImage("F:\\my photoshops\\IMG1.jpg");
+                    g.drawImage(img2, 50, 50, 180, 270, null);
+                }
+                if (res == 6) {
+                    Image img2 = Toolkit.getDefaultToolkit().getImage("F:\\my photoshops\\IMG6.jpg");
+                    g.drawImage(img2, 50, 50, 180, 270, null);
+                }
+                if (res == 7) {
+                    Image img2 = Toolkit.getDefaultToolkit().getImage("F:\\my photoshops\\IMG3.jpg");
+                    g.drawImage(img2, 50, 50, 180, 270, null);
+                }
+                if (res == 8) {
+                    Image img2 = Toolkit.getDefaultToolkit().getImage("F:\\my photoshops\\IMG5.jpg");
+                    g.drawImage(img2, 50, 50, 180, 270, null);
+                }
+//                if (SetChar.name1.getText()==""){
+//                    x1.setText(SetChar.player1name);
+//                }
+//                if (SetChar.name2.getText()==""){
+//                    x2.setText(SetChar.player2name);
+//                }
+//                if (SetChar.name1.getText()==null){
+//                    x1.setText(SetChar.player1name);
+//                }
+//                if (SetChar.name2.getText()==null){
+//                    x2.setText(SetChar.player2name);
+//                }
+                if (SetChar.ans==0) {
+                    x1.setText(SetChar.player1name);
+                    x1.setForeground(Color.red);
+                    x1.setFont(new Font("MV Boli", Font.PLAIN, 30));
+                    x1.setBounds(1757, 375, 200, 30);
+                    x1.setSize(110, 30);
+                    x2.setText(SetChar.player2name);
+                    x2.setForeground(Color.blue);
+                    x2.setFont(new Font("MV Boli", Font.PLAIN, 30));
+                    x2.setBounds(1757, 795, 200, 20);
+                    x2.setSize(110, 30);
+                    if (SetChar.ans3==1) {
+                        x1.setText("player1");
+                        x1.setForeground(Color.red);
+                        x1.setFont(new Font("MV Boli", Font.PLAIN, 30));
+                        x1.setBounds(1757, 375, 200, 30);
+                        x1.setSize(110, 30);
+                    }
+                    if (SetChar.ans3 == 2) {
+                        x2.setText("player2");
+                        x2.setForeground(Color.blue);
+                        x2.setFont(new Font("MV Boli", Font.PLAIN, 30));
+                        x2.setBounds(1757, 795, 200, 20);
+                        x2.setSize(110, 30);
+                    }
+                    if (SetChar.ans3 == 3) {
+                        x2.setText("player2");
+                        x2.setForeground(Color.blue);
+                        x2.setFont(new Font("MV Boli", Font.PLAIN, 30));
+                        x2.setBounds(1757, 795, 200, 20);
+                        x2.setSize(110, 30);
+                        x1.setText("player1");
+                        x1.setForeground(Color.red);
+                        x1.setFont(new Font("MV Boli", Font.PLAIN, 30));
+                        x1.setBounds(1757, 375, 200, 30);
+                        x1.setSize(110, 30);
+                    }
+                }
+                if(SetChar.ans==1) {
+                    x1.setText(SetChar.player2name);
+                    x1.setForeground(Color.red);
+                    x1.setFont(new Font("MV Boli", Font.PLAIN, 30));
+                    x1.setBounds(1757, 375, 200, 30);
+                    x1.setSize(110, 30);
+                    x2.setText(SetChar.player1name);
+                    x2.setForeground(Color.blue);
+                    x2.setFont(new Font("MV Boli", Font.PLAIN, 30));
+                    x2.setBounds(1757, 795, 200, 20);
+                    x2.setSize(110, 30);
+                    if (SetChar.ans3==2) {
+                        x1.setText("player2");
+                        x1.setForeground(Color.red);
+                        x1.setFont(new Font("MV Boli", Font.PLAIN, 30));
+                        x1.setBounds(1757, 375, 200, 30);
+                        x1.setSize(110, 30);
+                    }
+                    if (SetChar.ans3 == 1) {
+                        x2.setText("player1");
+                        x2.setForeground(Color.blue);
+                        x2.setFont(new Font("MV Boli", Font.PLAIN, 30));
+                        x2.setBounds(1757, 795, 200, 20);
+                        x2.setSize(110, 30);
+                    }
+                    if (SetChar.ans3 == 3) {
+                        x2.setText("player1");
+                        x2.setForeground(Color.blue);
+                        x2.setFont(new Font("MV Boli", Font.PLAIN, 30));
+                        x2.setBounds(1757, 795, 200, 20);
+                        x2.setSize(110, 30);
+                        x1.setText("player2");
+                        x1.setForeground(Color.red);
+                        x1.setFont(new Font("MV Boli", Font.PLAIN, 30));
+                        x1.setBounds(1757, 375, 200, 30);
+                        x1.setSize(110, 30);
+                    }
+                }
+                Font font=new Font("serif", Font.PLAIN, 35);
+                g.setFont(font);
+                power1 = String.valueOf(Scores.weapon1);
+                g.drawString(power1, 1550, 250);
+                money1 = String.valueOf(Scores.money1);
+                g.drawString(money1, 1550, 350);
+                treasure1 = String.valueOf(Scores.score1);
+                g.drawString(treasure1, 1550, 450);
+                power2 = String.valueOf(Scores.weapon2);
+                g.drawString(power2, 1550, 675);
+                money2 = String.valueOf(Scores.money2);
+                g.drawString(money2, 1550, 765);
+                treasure2 = String.valueOf(Scores.score2);
+                g.drawString(treasure2, 1550, 865);
+            }
+        });
         pack();
-        addMouseListener(new Mous(this));
-        addKeyListener(new Move1(this));
-        dice.setBounds(100, 100, 75, 76);
-        timerPanel.setBounds(100, 50, 75, 25);
-        backA.setBounds(1550, 830, 100, 80);
-        exitA.setBounds(1550, 920, 100, 80);
-        playerimg1 = new ImageIcon("JZHO9321.png").getImage();
-        playerimg2 = new ImageIcon("TUGR3735.png").getImage();
+        addMouseListener(new Mouse1(this));
+        //addMouseListener(new Mouse2(this));
+        sound.setBounds(10,10,35,35);
+        dice.setBounds(1390, 100, 75, 76);
+        timerPanel.setBounds(1730, 100, 175, 25);
+        backA.setBounds(-30, 815, 400, 80);
+        exitA.setBounds(-30, 900, 400, 80);
+        playerimg1 = new ImageIcon("F:\\my photoshops\\JZHO9321.PNG").getImage();
+        playerimg2 = new ImageIcon("F:\\my photoshops\\TUGR3735.PNG").getImage();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(1920, 1080);
-        this.setLocationRelativeTo(null);
         this.setLayout(null);
         this.setVisible(true);
         this.add(dice);
+        this.add(sound);
         this.add(timerPanel);
         this.add(exitA);
         this.add(backA);
-        ImageIcon img1 = new ImageIcon("EZMW0610.jpeg");
+        add(x1);
+        add(x2);
+        ImageIcon img1 = new ImageIcon("F:\\my photoshops\\EZMW0610.jpeg");
         this.setIconImage(img1.getImage());
         this.setTitle("Travelling Sales Man ");
-
-
-        //Move1 move = new Move1();
-
-
-//        importimage();
-//        loadanimation();
-        //this.add(timerPanel);
-
+        this.setBounds(0, 0, 3234, 2434);
+        this.setLocationRelativeTo(null);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+//        this.setSize(3234, 2434);
+//        this.setResizable(false);
     }
-
-//    private void loadanimation() {
-//        idlani = new BufferedImage[7];
-//        for (int i = 0; i < idlani.length; i++) {
-//            idlani[i] = img.getSubimage(i * 1733, 0, 1733, 975);
-//        }
-//    }
-//
-//    private void importimage() {
-//        InputStream is = getClass().getResourceAsStream("/finalBack.png");
-//        try {
-//            img = ImageIO.read(is);
-//        } catch (IOException e) {
-//            throw new RuntimeException();
-//        } finally {
-//            try {
-//                is.close();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//
-//        }
-//    }
-//
-//    private void updateanimationtic() {
-//        anitick++;
-//        if (anitick >= anispeed) {
-//            anitick = 0;
-//            aniindex++;
-//            anired++;
-//            if (aniindex >= idlani.length) {
-//                aniindex = 0;
-//            }
-//        }
-//    }
-
-//    public void paint(Graphics g) {
-//
-//        g.setColor(new Color(0, 0, 0));
-//        //g.drawOval(100 , 100 , 200 , 200);
-//        //updateanimationtic();
-//        //g.drawImage(idlani[aniindex], 0, 0, 1920, 1080, null);
-//        //   g.drawImage(playerblue[anired], 150, 700, 50, 50, null);
-//
-//        //g.drawImage(background, 0, 0, 1112, 843, null);
-//        g.drawImage(back, 0, 0, 3234, 2434, null);
-//        //updateanimationtic();
-//        g.drawImage(left, 100, 900, 50, 50, null);
-//        g.drawImage(right, 170, 900, 50, 50, null);
-//        g.drawImage(up, 135, 850, 50, 50, null);
-//        g.drawImage(down, 135, 950, 50, 50, null);
-    //}
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -307,3 +427,118 @@ public class MyFrame extends JFrame implements ActionListener {
     }
 }
 
+
+// private Total_Map total_map ;
+//    JFrame frame ;
+//    Total_Map total_map =new Total_Map() ;
+//    Quete quete =new Quete();
+//    private BufferedImage img ;
+//    private BufferedImage playerbluem ;
+//    private BufferedImage playerredm ;
+//    private BufferedImage[] idlani;
+//    private BufferedImage[] playerblue;
+//    private BufferedImage[] playerred;
+//    private int anitick , aniindex , anispeed = 20 , anired, anired1;
+//
+//    static int player1locX = 250 ;
+//
+//    static int player1locY = 150 ;
+//    static int player2locX = 250 ;
+//
+//    static int player2locY = 150 ;
+//
+//    MyFrame(){
+//        importimage();
+//        loadanimation();
+//        background = new ImageIcon("back.gif").getImage();
+//        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        this.setSize(1112 , 843);
+//        this.setLocationRelativeTo(null);
+//        this.setLayout(null);
+//        this.setVisible(true);
+//        this.add(total_map);
+//        this.add(quete);
+//    }
+//
+//    private void loadanimation() {
+//        idlani = new BufferedImage[13];
+//        playerblue = new BufferedImage[6];
+//        playerred = new BufferedImage[6];
+//        for (int i=0 ; i < idlani.length ; i++){
+//            idlani[i]= img.getSubimage(i*3234, 0 , 3234 , 2434);
+//        }
+//        for (int i=0 ; i < playerblue.length ; i++){
+//            playerblue[i]= playerbluem.getSubimage(i*747, 0 , 747 , 1300);
+//        }
+//        for (int i=0 ; i < playerred.length ; i++){
+//            playerred[i]= playerredm.getSubimage(i*747, 0 , 747 , 1300);
+//        }
+//    }
+//    private void importimage(){
+//
+//        player1 = new ImageIcon("player1.png").getImage();
+//        player2 = new ImageIcon("player1.png").getImage();
+//
+//        try {
+//            img = ImageIO.read(is);
+//        }catch (IOException e){
+//            throw new RuntimeException();
+//        }finally {
+//            try {
+//                is.close();
+//            }catch (IOException e){
+//                e.printStackTrace();
+//            }
+//
+//        }
+//        //************
+//        try {
+//            playerbluem = ImageIO.read(dis);
+//            playerredm = ImageIO.read(tis);
+//        }catch (IOException e){
+//            throw new RuntimeException();
+//        }finally {
+//            try {
+//                dis.close();
+//            }catch (IOException e){
+//                e.printStackTrace();
+//            }
+//
+//        }
+//        //***********
+//    }
+//    private void updateanimationtic() {
+//        anitick++ ;
+//        if(anitick >= anispeed){
+//            anitick = 0 ;
+//            aniindex++;
+//            anired++;
+//            anired1++;
+//            if(aniindex >= idlani.length){
+//                aniindex=0;
+//            }
+//            if(anired >= playerblue.length) {
+//                anired = 0;
+//            }
+//            if(anired >= playerred.length){
+//                anired=0;
+//            }
+//        }
+//    }
+//
+//    public void paint(Graphics g){
+//
+//        g.setColor(new Color( 0,0,0));
+//        //g.drawOval(100 , 100 , 200 , 200);
+//        updateanimationtic();
+//        g.drawImage(idlani[aniindex] , 0 , 0 , 1920 , 1080 ,  null);
+//      //  g.drawImage(playerblue[anired] , 150 , 700 , 50 , 50 ,  null);
+//        g.drawImage(player1 , player1locX , player1locY , 50 , 50 ,null );
+//        g.drawImage(player2 , player2locX , player2locY , 50 , 50 ,null );
+//
+//      //  g.drawImage(background, 0,0,1112 , 843 , null);
+//
+//        updateanimationtic();
+//        repaint();
+//
+//    }

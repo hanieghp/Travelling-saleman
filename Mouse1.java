@@ -7,18 +7,13 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class Mouse1 extends JFrame implements MouseListener {
+    static int []treasures=new int[8];
+    static int []treasures2=new int[8];
 
-    Image chakme = Toolkit.getDefaultToolkit().getImage("IMG16.PNG");
-    Image cheraq = Toolkit.getDefaultToolkit().getImage("IMG15.PNG");
-    Image halghe = Toolkit.getDefaultToolkit().getImage("IMG11.PNG");
-    Image taj = Toolkit.getDefaultToolkit().getImage("IMG17.PNG");
-    Image trap = Toolkit.getDefaultToolkit().getImage("BMXL64252.jpg");
-    Image ayne = Toolkit.getDefaultToolkit().getImage("IMG13.PNG");
-    Image sib = Toolkit.getDefaultToolkit().getImage("IMG14.PNG");
-    Image javaherat = Toolkit.getDefaultToolkit().getImage("IMG12.PNG");
-    Image kafsh = Toolkit.getDefaultToolkit().getImage("IMG10.PNG");
-
-    int x=1, y=10;
+    static int x1=1;
+    static int y1=10;
+    static int x2=1;
+    static int y2=10;
     MyFrame myFrame;
 
     public Mouse1(MyFrame myFrame) {
@@ -26,137 +21,245 @@ public class Mouse1 extends JFrame implements MouseListener {
     }
     @Override
     public void mouseClicked(MouseEvent e) {
-        int tas = Dice.result;
-        System.out.println(tas);
-        while(tas != 0) {
-        if (e.getX() > 40 && e.getX() < 140 && e.getY() > 520 && e.getY() < 620) {
-            if (MyFrame.map[x - 1][y] != 0 && MyFrame.map[x - 1][y] != 7) {
-                myFrame.player1locX -= 75;
-                x -= 1;
-                tas--;
-                System.out.println("Down" + MyFrame.player1locX);
+        //int tas = Dice.result;
+//        System.out.println(Dice.result);
+        if (e.getX() > 20 && e.getX() < 120 && e.getY() > 520 && e.getY() < 620 && Dice.result != 0) {
+            if(Scores.gameTurn == 1) {
+                if (MyFrame.map[x1 - 1][y1] != 0 && MyFrame.map[x1 - 1][y1] != 7 && MyFrame.map[x1 - 1][y1] != -9) {
+                    x1 -= 1;
+                    if (MyFrame.map[x1][y1] == 1)
+                        MyFrame.map[x1][y1] = -9;
+                    myFrame.player1locX -= 75;
+                }
             }
-        }if (e.getX() > 200 && e.getX() < 300 && e.getY() > 520 && e.getY() < 620) {
-            if (MyFrame.map[x + 1][y] != 0 && MyFrame.map[x + 1][y] != 7) {
-                myFrame.player1locX += 75;
-                x += 1;
-                tas--;
-                System.out.println("up");
+            if (Scores.gameTurn == 2) {
+                if (MyFrame.map[x2 - 1][y2] != 0 && MyFrame.map[x2 - 1][y2] != 7 && MyFrame.map[x2 - 1][y2] != -9) {
+                    x2 -= 1;
+                    if (MyFrame.map[x2][y2] == 1)
+                        MyFrame.map[x2][y2] = -9;
+                    myFrame.player2locX -= 75;
+                }
             }
-        }if (e.getX() > 120 && e.getX() < 220 && e.getY() > 440 && e.getY() < 540) {
-            if (MyFrame.map[x][y - 1] != 0 && MyFrame.map[x][y - 1] != 7) {
-                myFrame.player1locY -= 75;
-                y -= 1;
-                tas--;
-                System.out.println("left");
+            Dice.result--;
+//            System.out.println("left");
+        }
+        else if (e.getX() > 180 && e.getX() < 280 && e.getY() > 520 && e.getY() < 620 && Dice.result != 0) {
+            if(Scores.gameTurn == 1) {
+                if (MyFrame.map[x1 + 1][y1] != 0 && MyFrame.map[x1 + 1][y1] != 7 && MyFrame.map[x1 + 1][y1] != -9) {
+                    x1 += 1;
+                    if (MyFrame.map[x1][y1] == 1)
+                        MyFrame.map[x1][y1] = -9;
+                    myFrame.player1locX += 75;
+                }
             }
-        }if (e.getX() > 120 && e.getX() < 220 && e.getY() > 600 && e.getY() < 700) {
-            if (MyFrame.map[x][y + 1] != 0 && MyFrame.map[x][y + 1] != 7) {
-                myFrame.player1locY += 75;
-                y += 1;
-                tas--;
-                System.out.println("right");
+            if (Scores.gameTurn == 2){
+                if (MyFrame.map[x2 + 1][y2] != 0 && MyFrame.map[x2 + 1][y2] != 7 && MyFrame.map[x2 + 1][y2] != -9) {
+                    x2 += 1;
+                    if (MyFrame.map[x2][y2] == 1)
+                        MyFrame.map[x2][y2] = -9;
+                    myFrame.player2locX += 75;
+                }
+            }
+            Dice.result--;
+//            System.out.println("right");
+        }
+        else if (e.getX() > 100 && e.getX() < 200 && e.getY() > 640 && e.getY() < 740 && Dice.result != 0) {
+            if(Scores.gameTurn == 1){
+                if (MyFrame.map[x1][y1 + 1] != 0 && MyFrame.map[x1][y1 + 1] != 7 && MyFrame.map[x1][y1+1] != -9) {
+                    y1 += 1;
+                    if (MyFrame.map[x1][y1] == 1)
+                        MyFrame.map[x1][y1] = -9;
+                    myFrame.player1locY += 75;
+                }
+            }
+            if (Scores.gameTurn == 2) {
+                if (MyFrame.map[x2][y2 + 1] != 0 && MyFrame.map[x2][y2 + 1] != 7 && MyFrame.map[x2][y2 + 1] != -9) {
+                    y2 += 1;
+                    if (MyFrame.map[x2][y2] == 1)
+                        MyFrame.map[x2][y2] = -9;
+                    myFrame.player2locY += 75;
+                }
+            }
+            Dice.result--;
+//            System.out.println("up");
+        }
+        else if (e.getX() > 100 && e.getX() < 200 && e.getY() > 400 && e.getY() < 500 && Dice.result != 0) {
+            if(Scores.gameTurn == 1){
+                if (MyFrame.map[x1][y1 - 1] != 0 && MyFrame.map[x1][y1 - 1] != 7 && MyFrame.map[x1][y1-1] != -9) {
+                    y1 -= 1;
+                    if (MyFrame.map[x1][y1] == 1)
+                        MyFrame.map[x1][y1] = -9;
+                        myFrame.player1locY -= 75;
+                    }
+                }
+            if (Scores.gameTurn == 2){
+                if (MyFrame.map[x2][y2 - 1] != 0 && MyFrame.map[x2][y2 - 1] != 7 && MyFrame.map[x2][y2-1] != -9) {
+                    y2 -= 1;
+                    if (MyFrame.map[x2][y2] == 1)
+                        MyFrame.map[x2][y2] = -9;
+                    myFrame.player2locY -= 75;
+                }
+            }
+            Dice.result--;
+//            System.out.println("down");
+        }
+        if(e.getX() > 1500 && e.getX() < 1600 && e.getY() > 100 && e.getY() < 200){
+            if(Scores.gameTurn == 1){
+                for (int g=0 ; g<12 ; g++){
+                    for (int k=0 ; k<12 ; k++){
+                        if(MyFrame.map[g][k]==-9)
+                            MyFrame.map[g][k]=1;
+                        if (MyFrame.map[g][k]==-3)
+                            MyFrame.map[g][k]=3;
+                        if (MyFrame.map[g][k]==-5)
+                            MyFrame.map[g][k]=1;
+                        if (MyFrame.map[g][k]<0)
+                            MyFrame.map[g][k]*=-1;}
+                }
+                Scores.gameTurn = 2;
+            }else{
+                for (int g=0 ; g<12 ; g++){
+                    for (int k=0 ; k<12 ; k++){
+                        if(MyFrame.map[g][k]==-9)
+                            MyFrame.map[g][k]=1;
+                        if (MyFrame.map[g][k]==-5)
+                            MyFrame.map[g][k]=1;
+                        if (MyFrame.map[g][k]<0)
+                            MyFrame.map[g][k]*=-1;
+                    }
+                }
+                Scores.gameTurn = 1;
             }
         }
-        }
-        if (MyFrame.map[x][y] == 5) {
-            Scores.money1 -= 50;
-            this.setContentPane(new JPanel() {
-                @Override
-                public void paintComponent(Graphics g) {
-                    g.drawImage(trap, x * 75 + 250, y * 75 + 150, null);
+        if(Scores.gameTurn == 1) {
+            if (MyFrame.map[x1][y1] == 5) {
+                MyFrame.map[x1][y1] = -5;
+                if (Scores.money1 >= 50)
+                    Scores.money1 -= 50;
+                if (Scores.money1 < 50) {
+                    MyFrame.player1locX = 460;
+                    MyFrame.player1locY = 900;
+                    x1 = 1;
+                    y1 = 10;
                 }
-            });
-            pack();
+            }
+            if (MyFrame.map[x1][y1] == 3) {
+                MyFrame.map[x1][y1] = -3;
+                Scores.money1 += 100;
+            }
+            if (MyFrame.map[x1][y2] == 800) {
+                MyFrame.map[x1][y1]=-800;
+                treasures[7]=8;
+            }
+            if (MyFrame.map[x1][y1] == 4) {
+                new Market1();
+            }
+            if (MyFrame.map[x1][y1] == 6) {
+                new Castle1();
+            }
+            if (MyFrame.map[x1][y1] == 700) {
+                MyFrame.map[x1][y1]=-700;
+                treasures[6]=7;
+            }
+            if (MyFrame.map[x1][y1] == 600) {
+                MyFrame.map[x1][y1]=-600;
+                treasures[5]=6;
+            }
+            if (MyFrame.map[x1][y1] == 500) {
+                MyFrame.map[x1][y1]=-500;
+                treasures[4]=5;
+            }
+            if (MyFrame.map[x1][y1] == 400) {
+                MyFrame.map[x1][y1]=-400;
+                treasures[3]=4;
+            }
+            if (MyFrame.map[x1][y1] == 200) {
+                MyFrame.map[x1][y1]=-200;
+                treasures[1]=2;
+            }
+            if (MyFrame.map[x1][y1] == 300) {
+                MyFrame.map[x1][y1]=-300;
+                treasures[2]=3;
+            }
+            if (MyFrame.map[x1][y1] == 100) {
+                MyFrame.map[x1][y1]=-100;
+                treasures[0]=1;
+            }
         }
-        if (MyFrame.map[x][y] == 100) {
-            Scores.score1 += 100;
-            this.setContentPane(new JPanel() {
-                @Override
-                public void paintComponent(Graphics g) {
-                    g.drawImage(chakme, x * 75 + 250, y * 75 + 150, null);
+        if(Scores.gameTurn == 2) {
+            if (MyFrame.map[x2][y2] == 5) {
+                MyFrame.map[x2][y2] = -5;
+                if (Scores.money2 >= 50)
+                    Scores.money2 -= 50;
+                if (Scores.money2 < 50) {
+                    MyFrame.player2locX = 460;
+                    MyFrame.player2locY = 900;
+                    x2 = 1;
+                    y2 = 10;
                 }
-            });
-            pack();
+            }
+            if (MyFrame.map[x2][y2] == 3) {
+                MyFrame.map[x2][y2] = -3;
+                Scores.money2 += 100;
+            }
+            if (MyFrame.map[x2][y2] == 800) {
+                MyFrame.map[x2][y2] = -800;
+                treasures2[7] = 8;
+            }
+            if (MyFrame.map[x2][y2] == 4) {
+                new Market1();
+            }
+            if (MyFrame.map[x2][y2] == 6) {
+                new Castle1();
+            }
+            if (MyFrame.map[x2][y2] == 700) {
+                MyFrame.map[x2][y2]=-700;
+                treasures2[6]=7;
+            }
+            if (MyFrame.map[x2][y2] == 600) {
+                MyFrame.map[x2][y2]=-600;
+                treasures2[5]=6;
+            }
+            if (MyFrame.map[x2][y2] == 500) {
+                MyFrame.map[x2][y2]=-500;
+                treasures2[4]=5;
+            }
+            if (MyFrame.map[x2][y2] == 400) {
+                MyFrame.map[x2][y2]=-400;
+                treasures2[3]=4;
+            }
+            if (MyFrame.map[x2][y2] == 200) {
+                MyFrame.map[x2][y2]=-200;
+                treasures2[1]=2;
+            }
+            if (MyFrame.map[x2][y2] == 300) {
+                MyFrame.map[x2][y2]=-300;
+                treasures2[2]=3;
+            }
+            if (MyFrame.map[x2][y2] == 100) {
+                MyFrame.map[x2][y2]=-100;
+                treasures2[0]=1;
+            }
         }
-        if (MyFrame.map[x][y] == 300) {
-            Scores.score1 += 300;
-            this.setContentPane(new JPanel() {
-                @Override
-                public void paintComponent(Graphics g) {
-                    g.drawImage(ayne, x * 75 + 250, y * 75 + 150, null);
+        if (x1 == x2 && y1 == y2) {
+            if (x1 != 1 || y1 != 10 || x2 != 1 || y2 != 10) {
+                if (Scores.weapon1 != 0 || Scores.weapon2 != 0) {
+                    if (Scores.weapon1 >= Scores.weapon2)
+                        new Fight1();
+                    else
+                        new Fight2();
                 }
-            });
-            pack();
-        }
-        if (MyFrame.map[x][y] == 200) {
-            Scores.score1 += 200;
-            this.setContentPane(new JPanel() {
-                @Override
-                public void paintComponent(Graphics g) {
-                    g.drawImage(sib, x * 75 + 250, y * 75 + 150, null);
+                if (Scores.weapon1 == 0 && Scores.weapon2 == 0) {
+                    MyFrame.player1locY = 900;
+                    MyFrame.player1locX = 460;
+                    MyFrame.player2locY = 900;
+                    MyFrame.player2locX = 420;
+                    Mouse1.x1 = 1;
+                    Mouse1.y1 = 10;
+                    Mouse1.x2 = 1;
+                    Mouse1.y2 = 10;
                 }
-            });
-            pack();
-        }
-        if (MyFrame.map[x][y] == 400) {
-            Scores.score1 += 400;
-            this.setContentPane(new JPanel() {
-                @Override
-                public void paintComponent(Graphics g) {
-                    g.drawImage(kafsh, x * 75 + 250, y * 75 + 150, null);
-                }
-            });
-            pack();
-        }
-        if (MyFrame.map[x][y] == 500) {
-            Scores.score1 += 500;
-            this.setContentPane(new JPanel() {
-                @Override
-                public void paintComponent(Graphics g) {
-                    g.drawImage(halghe, x * 75 + 250, y * 75 + 150, null);
-                }
-            });
-            pack();
-        }
-        if (MyFrame.map[x][y] == 600) {
-            Scores.score1 += 600;
-            this.setContentPane(new JPanel() {
-                @Override
-                public void paintComponent(Graphics g) {
-                    g.drawImage(javaherat, x * 75 + 250, y * 75 + 150, null);
-                }
-            });
-            pack();
-        }
-        if (MyFrame.map[x][y] == 700) {
-            Scores.score1 += 700;
-            this.setContentPane(new JPanel() {
-                @Override
-                public void paintComponent(Graphics g) {
-                    g.drawImage(taj, x * 75 + 250, y * 75 + 150, null);
-                }
-            });
-            pack();
-        }
-        if (MyFrame.map[x][y] == 800) {
-            Scores.score1 += 800;
-            this.setContentPane(new JPanel() {
-                @Override
-                public void paintComponent(Graphics g) {
-                    g.drawImage(cheraq, x * 75 + 250, y * 75 + 150, null);
-                }
-            });
-            pack();
-        }
-        if (MyFrame.map[x][y] == 4) {
-            new Market1();
-        }
-        if (myFrame.player1locX == myFrame.player2locX && myFrame.player1locY == myFrame.player2locY) {
-            if (Scores.weapon1 > Scores.weapon2)
-                new Fight1();
-            else
-                new Fight2();
+            }
         }
     }
 

@@ -4,10 +4,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Objects;
 
 @SuppressWarnings("DuplicatedCode")
 public class SetChar extends JFrame implements ActionListener {
-    static int ans3;
+    static String options[] = {"9*9", "10*10"};
+    static final JComboBox choser = new JComboBox(options);
+    static int ans3=0;
     static int ans;
     static JLabel nameshow1;
     static JLabel nameshow2;
@@ -22,6 +25,7 @@ public class SetChar extends JFrame implements ActionListener {
     Icon showI;
     Icon showI1;
     Image background = Toolkit.getDefaultToolkit().getImage("F:\\my photoshops\\background.jpg");
+    Image extend = Toolkit.getDefaultToolkit().getImage("F:\\my photoshops\\QNECE1398.JPG");
     static String player1name="player1";
     static String player2name="player2";
     SetChar(){
@@ -41,7 +45,8 @@ public class SetChar extends JFrame implements ActionListener {
         showI = new ImageIcon("F:\\my photoshops\\player11.jpg");
         showI1 = new ImageIcon("F:\\my photoshops\\player21.jpg");
 
-
+        Image playerx = Toolkit.getDefaultToolkit().getImage("F:\\my photoshops\\IMG_2898.GIF");
+        Image playery = Toolkit.getDefaultToolkit().getImage("F:\\my photoshops\\IMG_2899.GIF");
         Image choose = Toolkit.getDefaultToolkit().getImage("F:\\my photoshops\\EUTK2552.JPEG");
         Image choose1 = Toolkit.getDefaultToolkit().getImage("F:\\my photoshops\\EUTK2552.JPEG");
         Image imgP1=Toolkit.getDefaultToolkit().getImage("F:\\my photoshops\\IMG_1963.JPG");
@@ -52,29 +57,54 @@ public class SetChar extends JFrame implements ActionListener {
                 super.paintComponents(g);
                 name1.setBounds(255, 240, 190, 63);
                 name2.setBounds(255, 440, 190, 63);
-                back.setBounds(100, 770, 400, 80);
-                enter.setBounds(100, 670, 400, 80);
+                enter.setBounds(80, 770, 400, 80);
+                back.setBounds(80, 870, 400, 80);
                 name3.setBounds(695, 670, 220, 50);
                 name4.setBounds(1170, 670, 220, 50);
 
 
+
                 g.drawImage(background, 0, 0, 3380, 1130, null);
                 g.drawImage(imgP1, 610, 130, 380, 630, null);
-                g.drawImage(imgP2, 1090, 130, 380, 630, null);
+                g.drawImage(imgP2, 1090, 130, 380, 630,  null);
                 g.drawImage(choose, 80, 195, 396, 137, null);
                 g.drawImage(choose1, 80, 395, 396, 137, null);
+                g.drawImage(extend, 80, 595, 396, 137, null);
+                g.drawImage(playerx, 710, 170, 160, 478, null);
+                repaint();
+                g.drawImage(playery, 1190, 170, 160, 478, null);
+                repaint();
 
 
                 player1name = name1.getText();
                 player2name = name2.getText();
-
-                if(name1.getText() == null){
-                    ans3=1;
+                if (name1.getText()==""){
+                    player1name="player1";
                 }
-                if(name2.getText() == null){
-                    ans3=2;
+                if (name2.getText()==""){
+                    player1name="player1";
                 }
-
+                if (name1.getText()==null){
+                    player1name="player1";
+                }
+                if (name2.getText()==null){
+                    player1name="player1";
+                }
+                if (player2name==null){
+                    player1name="player1";
+                }
+                if (player1name==""){
+                    player1name="player1";
+                }
+                if (player2name==""){
+                    player1name="player1";
+                }
+                if (player1name==null){
+                    player1name="player1";
+                }
+                if (player2name==null){
+                    player1name="player1";
+                }
                 nameshow1 = new JLabel(player1name);
                 nameshow2 = new JLabel(player2name);
                 this.add(nameshow1);
@@ -90,6 +120,7 @@ public class SetChar extends JFrame implements ActionListener {
         this.add(name2);
         this.add(back);
         this.add(enter);
+        this.add(choser);
 //        this.add(name3);
 //        this.add(name4);
 
@@ -100,14 +131,17 @@ public class SetChar extends JFrame implements ActionListener {
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Travelling Salesman");
-        this.setBounds(0, 0, 300, 120);
+        this.setBounds(0, 0, 3234, 2434);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.setSize(400, 500);
         this.setLayout(null);
         this.setVisible(true);
-        this.setSize(600, 600);
         ImageIcon img1=new ImageIcon("F:\\my photoshops\\EZMW0610.jpeg");
         this.setIconImage(img1.getImage());
+        this.setBounds(0, 0, 3234, 2434);
+        this.setLocationRelativeTo(null);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+//        this.setSize(3234, 2434);
+//        this.setResizable(false);
     }
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -115,40 +149,77 @@ public class SetChar extends JFrame implements ActionListener {
         if (e.getSource() == enter) {
             player1name = name1.getText();
             player2name = name2.getText();
-            if(name1.getText() == null){
+            if (name1.getText()==""){
                 ans3=1;
             }
-            if(name2.getText() == null){
+            if (Objects.equals(name2.getText(), "")){
                 ans3=2;
+            }
+            if (Objects.equals(name2.getText(), "") && Objects.equals(name1.getText(), "")){
+                ans3=3;
+            }
+            if (name1.getText()==null){
+                ans3=1;
+            }
+            if (player2name==null){
+                ans3=2;
+            }
+            if (player2name==null && player1name==null){
+                ans3=3;
+            }
+            if (Objects.equals(player1name, "")){
+                ans3=1;
+            }
+            if (Objects.equals(player2name, "")){
+                ans3=2;
+            }
+            if (Objects.equals(player2name, "") && Objects.equals(player1name, "")){
+                ans3=3;
+            }
+            if (player1name==null){
+                ans3=1;
+            }
+            if (player2name==null){
+                ans3=2;
+            }
+            if (player2name==null && player1name==null){
+                ans3=3;
             }
             nameshow1 = new JLabel(player1name);
             nameshow2 = new JLabel(player2name);
-
-
             this.add(name3);
             this.add(name4);
+            choser.setBounds(225, 660, 200, 43);
+            if (choser.getItemAt(choser.getSelectedIndex()).equals("9*9")){
+                for (int y=1; y<11; y++){
+                    MyFrame.map[11][y]=0;
+                    MyFrame.map[10][y]=0;
+                }
+                for (int x=1; x<11; x++){
+                    MyFrame.map[x][1]=0;
+//                    MyFrame.map[x][0]=0;
+                }
+            }
+            if (choser.getItemAt(choser.getSelectedIndex()).equals("10*10")){
+                for (int y=1; y<11; y++){
+//                    MyFrame.map[11][y]=1;
+                    MyFrame.map[10][y]=1;
+                }
+                for (int x=1; x<11; x++){
+                    MyFrame.map[x][1]=1;
+//                    MyFrame.map[x][0]=0;
+                }
+            }
         }
         if (e.getSource() == name3) {
             this.setVisible(false);
             ans=0;
-            if(name1.getText() == null){
-                ans3=1;
-            }
-            if(name2.getText() == null){
-                ans3=2;
-            }
-//            new Map();
+            new MyFrame();
         }
         if (e.getSource() == name4) {
             this.setVisible(false);
             ans=1;
-            if(name1.getText() == null){
-                ans3=1;
-            }
-            if(name2.getText() == null){
-                ans3=2;
-            }
-//            new Map();
+            new MyFrame();
         }
         if (e.getSource() == back){
             int ans1 = JOptionPane.showConfirmDialog(null, "Leave game and Back to menu?", "Attention", JOptionPane.YES_NO_CANCEL_OPTION);
